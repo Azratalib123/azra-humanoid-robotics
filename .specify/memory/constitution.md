@@ -1,55 +1,62 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+---
+Sync Impact Report
+---
+- Version change: none → 1.0.0
+- Added Principles: Accuracy, Clarity, Reproducibility, Rigor, Consistency
+- Added Sections: Standards, Constraints, Success Criteria
+- Templates requiring updates:
+  - ✅ .specify/templates/plan-template.md
+  - ✅ .specify/templates/spec-template.md
+  - ✅ .specify/templates/tasks-template.md
+- Follow-up TODOs: None
+-->
+# AI/Spec-Driven Book on AI-Native Software Development Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Accuracy
+All content verified against authoritative sources.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Clarity
+Target audience is CS/software readers; explanations must be precise.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Reproducibility
+Code and workflows must be traceable and testable.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Rigor
+Prefer peer-reviewed or official sources.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Consistency
+Maintain uniform terminology, style, and formatting.
 
-### [PRINCIPLE_6_NAME]
+## Standards
 
+- Source Verification: Claims supported by credible sources.
+- Citation: APA style.
+- Sources: ≥50% peer-reviewed or official docs.
+- Plagiarism: Zero tolerance.
+- Code: Must run correctly and illustrate concepts.
+- Writing: Flesch-Kincaid grade 10–12.
 
-[PRINCIPLE__DESCRIPTION]
+## Constraints
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+- Word Count: 15k–20k (per chapter adjustable).
+- Chapters: Intro, explanations, examples, summary.
+- Format: Markdown for Docusaurus, deployable to GitHub Pages.
+- References: In-text + compiled at chapter end.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Success Criteria
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- All claims verified.
+- Code runs reproducibly.
+- Book deployable via Docusaurus + GitHub Pages.
+- Zero plagiarism.
+- Passes fact-checking.
+- Clear and understandable for audience.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This Constitution is the single source of truth for project principles and standards. All contributions, reviews, and project artifacts must comply with it. Amendments require a documented proposal, review, and an approved migration plan to ensure existing content remains compliant.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-08 | **Last Amended**: 2025-12-08

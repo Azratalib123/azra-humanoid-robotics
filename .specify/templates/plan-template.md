@@ -31,7 +31,13 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+*   **Accuracy**: Is all content verified against authoritative sources?
+*   **Clarity**: Is the target audience (CS/software readers) kept in mind?
+*   **Reproducibility**: Are code and workflows traceable and testable?
+*   **Rigor**: Are peer-reviewed or official sources preferred?
+*   **Consistency**: Is uniform terminology, style, and formatting maintained?
+*   **Standards**: Does the plan adhere to the defined standards (Source Verification, Citation, etc.)?
+*   **Constraints**: Does the plan respect the defined constraints (Word Count, Format, etc.)?
 
 ## Project Structure
 
