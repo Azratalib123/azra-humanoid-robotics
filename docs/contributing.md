@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Contributing to the Book: Citation Guidelines
 
 This document outlines the guidelines for managing and formatting citations within the "Physical AI & Humanoid Robotics Capstone Project" book, adhering strictly to APA 7th edition style.
@@ -82,5 +82,5 @@ This document outlines the guidelines for managing and formatting citations with
     - Presence of both in-text citations and a corresponding reference list.
     - Quality of sources (>=50% peer-reviewed/official).
 
->>>>>>> 7e329f05dc838a13bb52fffdaed4957972c4fcd9
+
 By adhering to these guidelines, we ensure the academic rigor and credibility of the "Physical AI & Humanoid Robotics Capstone Project" book.

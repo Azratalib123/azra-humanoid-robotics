@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Dependencies
 /node_modules
 
@@ -70,4 +70,4 @@ Thumbs.db
 *.swp
 .vscode/
 .idea/
->>>>>>> 7e329f05dc838a13bb52fffdaed4957972c4fcd9
+
