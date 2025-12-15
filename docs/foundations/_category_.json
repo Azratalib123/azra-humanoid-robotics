@@ -7,12 +7,5 @@
   }
 }
 
-{
-  "label": "Foundations",
-  "position": 1,
-  "link": {
-    "type": "generated-index",
-    "description": "Foundational concepts for Physical AI and Humanoid Robotics"
-  }
-}
+
 

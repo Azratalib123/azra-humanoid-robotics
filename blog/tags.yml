@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 facebook:
   label: Facebook
   permalink: /facebook
@@ -18,24 +18,3 @@ hola:
   label: Hola
   permalink: /hola
   description: Hola tag description
-=======
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
-
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
-
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
-
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
->>>>>>> 7e329f05dc838a13bb52fffdaed4957972c4fcd9
