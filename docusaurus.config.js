@@ -1,21 +1,17 @@
-// @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-// (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
-// See: https://docusaurus.io/docs/api/docusaurus-config
+
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Physical AI & Humanoid Robotics',
-  tagline: 'A Comprehensive, Spec-Driven Book',
+  title: 'Building Intelligent Humanoid Robotics',
+  tagline: 'A Complete, Spec-Driven Guide to Building Intelligent Humanoid Robots',
   favicon: 'img/favicon.ico',
 
-  url: 'https://humanoid-robotics-book-phi.vercel.app',
+  url: 'https://azra-humanoid-robotics.vercel.app',
   baseUrl: '/',
 
-  organizationName: 'ersa-rani',
+  organizationName: 'azra talib',
   projectName: 'humanoid-robotics-book',
 
   onBrokenLinks: 'throw',
@@ -38,7 +34,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/ersa-rani/humanoid-robotics-book/tree/main/',
+            'https://github.com/Azratalib123',
         },
         blog: false, // Disabled for this project
         theme: {
@@ -54,7 +50,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Physical AI & Humanoid Robotics',
+        title: 'Building Intelligent Humanoid Robotics',
         logo: {
           alt: 'My Project Logo',
           src: 'img/logo.svg',
@@ -67,7 +63,7 @@ const config = {
             label: 'Book',
           },
           {
-            href: 'https://github.com/ersa-rani/humanoid-robotics-book',
+            href: 'https://github.com/Azratalib123',
             label: 'GitHub',
             position: 'right',
           },
@@ -98,7 +94,7 @@ const config = {
               },
               {
                 label: 'X',
-                href: 'https://x.com/irsa_ranii?s=09',
+                href: 'https://x.com/AzraTalib',
               },
             ],
           },
@@ -107,12 +103,12 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/ersa-rani/humanoid-robotics-book',
+                href: 'https://github.com/Azratalib123',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} ersa rani project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Azra Talib. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,

@@ -1,9 +1,9 @@
-/**
+/* *
  * CSS files with the .module.css suffix will be treated as CSS modules
  * and scoped locally.
  */
 
-.heroBanner {
+/* .heroBanner {
   padding: 4rem 0;
   text-align: center;
   position: relative;
@@ -20,4 +20,99 @@
   display: flex;
   align-items: center;
   justify-content: center;
+} */
+ 
+.heroWrapper {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #03002b, #01040f);
+  color: #ffffff;
+}
+
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.heroContent {
+  max-width: 600px;
+}
+
+.heroTitle {
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  opacity: 0.85;
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.heroActions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Right Visual */
+.heroVisual {
+  display: flex;
+  justify-content: center;
+}
+
+.visualCard {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  max-width: 320px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.visualCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.visualCard span {
+  font-size: 3rem;
+}
+
+.visualCard h3 {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.visualCard p {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* Main Content */
+.mainContent {
+  padding: 4rem 0;
+}
+
+/* Responsive */
+@media screen and (max-width: 996px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .heroActions {
+    justify-content: center;
+  }
+
+  .heroVisual {
+    margin-top: 3rem;
+  }
 }

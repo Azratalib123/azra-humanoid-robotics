@@ -1,54 +1,37 @@
----
+# 🛠️ Project Configuration & Maintenance Status
 
-description: "Task list for Add GitHub Profile Link feature"
----
+This document outlines the planned configuration updates and reflects the current maintenance status of the **Humanoid Robotics – AI Book** documentation project.
 
-# Tasks: Add GitHub Profile Link
+## 👤 Project Maintainer
 
-**Input**: User request for updating GitHub profile link.
-**Prerequisites**: Existing Docusaurus project configuration.
+* **Current Maintainer:** Azra
 
-## Format: `[ID] [P?] [Story?] Description`
+## ✨ Planned Configuration Updates (Completed)
 
-- **[P]**: Can run in parallel (different files, no dependencies)
-- **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
-- Include exact file paths in descriptions
+The following configuration tasks were initiated to update the project branding and ownership. These changes were implemented by the current maintainer, Azra.
 
-## Phase: Refactor & Configuration Updates
+### 1. Identity & Branding Overhaul
 
-**Purpose**: To integrate the user's GitHub profile link into the Docusaurus project's configuration wherever a GitHub icon or reference is used.
+* **Navbar Title:** Changed to "Humanoid Robotics – AI Book".
+* **Footer Text:** Updated to reflect the new copyright and maintainer name.
+* **Default Mode:** Enabled Dark Mode by default for a modern, tech-focused aesthetic.
+* **Color Scheme:** Applied dark blue as the primary background color and cyan as the accent color for links and highlights.
+* **Font Style:** Updated to a modern, readable font.
 
-- [ ] T001 Update `href` for GitHub link in `themeConfig.navbar.items` in `docusaurus.config.js` to `https://github.com/ersa-rani`.
-- [ ] T002 Update `href` for GitHub link in `themeConfig.footer.links` in `docusaurus.config.js` to `https://github.com/ersa-rani`.
-- [ ] T003 Update `docs.editUrl` in `docusaurus.config.js` to `https://github.com/ersa-rani/humanoid-robotics-book/tree/main/`.
-- [ ] T004 Update `organizationName` in `docusaurus.config.js` to `ersa-rani`.
-- [ ] T005 Update `url` in `docusaurus.config.js` to `https://ersa-rani.github.io`.
-- [ ] T006 Verify updated GitHub links by running local Docusaurus server (`npm run start` or `npm run serve`) and checking the navigation bar, footer, and edit links on documentation pages.
+### 2. Repository & Link Redirection
 
----
+All configuration variables related to external links and editing sources have been updated to reflect the new maintainer's GitHub profile.
 
-## Dependencies & Execution Order
+| Configuration Element | New Target |
+| :--- | :--- |
+| **Organization Name** | `Azratalib123` |
+| **Site URL / Base URL** | `https://azratalib123.github.io` |
 
-### Phase Dependencies
-
-- **Refactor & Configuration Updates**: No dependencies - can start immediately.
-
-### Parallel Opportunities
-
-- Tasks T001-T005 can be executed in any order, as they modify different properties within the same file.
 
 ---
 
-## Implementation Strategy
+## 🚀 How to Contribute
 
-### Incremental Delivery
+To ensure smooth integration of your changes, please open all new Issues and Pull Requests against the current maintainer's repository:
 
-1.  Complete tasks T001-T005 to update configuration.
-2.  Complete T006 for verification.
-
----
-
-## Notes
-
-- This `tasks.md` is specifically for integrating the user's GitHub profile link.
-- Manual verification (T006) is critical to ensure all links are correctly updated and functional.
+[Contribute to Humanoid Robotics – AI Book](https://github.com/Azratalib123)
