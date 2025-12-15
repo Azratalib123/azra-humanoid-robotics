@@ -1,0 +1,555 @@
+<?xml version="1.0"?>
+<robot name="simple_humanoid">
+  <!-- Define materials here if you want to reuse colors -->
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+  <material name="red">
+    <color rgba="0.8 0 0 1"/>
+  </material>
+  <material name="green">
+    <color rgba="0 0.8 0 1"/>
+  </material>
+  <material name="gray">
+    <color rgba="0.5 0.5 0.5 1"/>
+  </material>
+
+  <!-- Start defining links and joints -->
+
+  <!-- Torso Link -->
+  <link name="torso_link">
+    <visual>
+      <geometry>
+        <box size="0.2 0.3 0.5"/> <!-- Width, Depth, Height -->
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.2 0.3 0.5"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="10.0"/>
+      <origin xyz="0 0 0.25"/> <!-- Center of mass, assuming uniform density -->
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/> <!-- Placeholder values -->
+    </inertial>
+  </link>
+
+  <!-- Head Link -->
+  <link name="head_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.1"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+    </inertial>
+  </link>
+
+  <!-- Neck Joint (Torso to Head) -->
+  <joint name="neck_joint" type="revolute">
+    <parent link="torso_link"/>
+    <child link="head_link"/>
+    <origin xyz="0 0 0.25" rpy="0 0 0"/> <!-- Head sits on top of the torso -->
+    <axis xyz="0 0 1"/> <!-- Yaw axis for turning head -->
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Right Shoulder Link -->
+  <link name="right_shoulder_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+
+  <!-- Right Shoulder Joint (Torso to Shoulder) - Yaw -->
+  <joint name="right_shoulder_yaw_joint" type="revolute">
+    <parent link="torso_link"/>
+    <child link="right_shoulder_link"/>
+    <origin xyz="0 0.15 0.2" rpy="0 0 0"/> <!-- Right side, near top of torso -->
+    <axis xyz="0 0 1"/> <!-- Yaw axis for shoulder rotation -->
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Right Upper Arm Link -->
+  <link name="right_upper_arm_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.04" length="0.2"/>
+      </geometry>
+      <origin xyz="0 0 -0.1" rpy="0 0 0"/> <!-- Shift origin to connect to shoulder properly -->
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.04" length="0.2"/>
+      </geometry>
+      <origin xyz="0 0 -0.1" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <origin xyz="0 0 -0.1"/>
+      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.05" iyz="0.0" izz="0.05"/>
+    </inertial>
+  </link>
+
+  <!-- Right Shoulder Pitch Joint (Shoulder to Upper Arm) -->
+  <joint name="right_shoulder_pitch_joint" type="revolute">
+    <parent link="right_shoulder_link"/>
+    <child link="right_upper_arm_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/> <!-- Origin of upper arm is at the sphere's center -->
+    <axis xyz="0 1 0"/> <!-- Pitch axis for raising/lowering arm -->
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Right Lower Arm Link -->
+  <link name="right_lower_arm_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.03" length="0.18"/>
+      </geometry>
+      <origin xyz="0 0 -0.09" rpy="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.03" length="0.18"/>
+      </geometry>
+      <origin xyz="0 0 -0.09" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.4"/>
+      <origin xyz="0 0 -0.09"/>
+      <inertia ixx="0.04" ixy="0.0" ixz="0.0" iyy="0.04" iyz="0.0" izz="0.04"/>
+    </inertial>
+  </link>
+
+  <!-- Right Elbow Joint (Upper Arm to Lower Arm) -->
+  <joint name="right_elbow_joint" type="revolute">
+    <parent link="right_upper_arm_link"/>
+    <child link="right_lower_arm_link"/>
+    <origin xyz="0 0 -0.2" rpy="0 0 0"/> <!-- Connects at the end of the upper arm -->
+    <axis xyz="0 1 0"/> <!-- Pitch axis for elbow bend -->
+    <limit lower="-2.0" upper="0.0" effort="10.0" velocity="0.5"/> <!-- Only bends inwards -->
+  </joint>
+
+  <!-- Right Hand Link -->
+  <link name="right_hand_link">
+    <visual>
+      <geometry>
+        <box size="0.05 0.08 0.03"/>
+      </geometry>
+      <origin xyz="0 0 -0.015" rpy="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.08 0.03"/>
+      </geometry>
+      <origin xyz="0 0 -0.015" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 -0.015"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+
+  <!-- Right Wrist Joint (Lower Arm to Hand) -->
+  <joint name="right_wrist_joint" type="revolute">
+    <parent link="right_lower_arm_link"/>
+    <child link="right_hand_link"/>
+    <origin xyz="0 0 -0.18" rpy="0 0 0"/> <!-- Connects at the end of the lower arm -->
+    <axis xyz="0 1 0"/> <!-- Pitch axis for wrist bend -->
+    <limit lower="-0.5" upper="0.5" effort="5.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Left Shoulder Link -->
+  <link name="left_shoulder_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+
+  <!-- Left Shoulder Joint (Torso to Shoulder) - Yaw -->
+  <joint name="left_shoulder_yaw_joint" type="revolute">
+    <parent link="torso_link"/>
+    <child link="left_shoulder_link"/>
+    <origin xyz="0 -0.15 0.2" rpy="0 0 0"/> <!-- Left side, near top of torso -->
+    <axis xyz="0 0 1"/> <!-- Yaw axis for shoulder rotation -->
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Left Upper Arm Link -->
+  <link name="left_upper_arm_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.04" length="0.2"/>
+      </geometry>
+      <origin xyz="0 0 -0.1" rpy="0 0 0"/> <!-- Shift origin to connect to shoulder properly -->
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.04" length="0.2"/>
+      </geometry>
+      <origin xyz="0 0 -0.1" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <origin xyz="0 0 -0.1"/>
+      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.05" iyz="0.0" izz="0.05"/>
+    </inertial>
+  </link>
+
+  <!-- Left Shoulder Pitch Joint (Shoulder to Upper Arm) -->
+  <joint name="left_shoulder_pitch_joint" type="revolute">
+    <parent link="left_shoulder_link"/>
+    <child link="left_upper_arm_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/> <!-- Origin of upper arm is at the sphere's center -->
+    <axis xyz="0 1 0"/> <!-- Pitch axis for raising/lowering arm -->
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Left Lower Arm Link -->
+  <link name="left_lower_arm_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.03" length="0.18"/>
+      </geometry>
+      <origin xyz="0 0 -0.09" rpy="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.03" length="0.18"/>
+      </geometry>
+      <origin xyz="0 0 -0.09" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.4"/>
+      <origin xyz="0 0 -0.09"/>
+      <inertia ixx="0.04" ixy="0.0" ixz="0.0" iyy="0.04" iyz="0.0" izz="0.04"/>
+    </inertial>
+  </link>
+
+  <!-- Left Elbow Joint (Upper Arm to Lower Arm) -->
+  <joint name="left_elbow_joint" type="revolute">
+    <parent link="left_upper_arm_link"/>
+    <child link="left_lower_arm_link"/>
+    <origin xyz="0 0 -0.2" rpy="0 0 0"/> <!-- Connects at the end of the upper arm -->
+    <axis xyz="0 1 0"/> <!-- Pitch axis for elbow bend -->
+    <limit lower="-2.0" upper="0.0" effort="10.0" velocity="0.5"/> <!-- Only bends inwards -->
+  </joint>
+
+  <!-- Left Hand Link -->
+  <link name="left_hand_link">
+    <visual>
+      <geometry>
+        <box size="0.05 0.08 0.03"/>
+      </geometry>
+      <origin xyz="0 0 -0.015" rpy="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.08 0.03"/>
+      </geometry>
+      <origin xyz="0 0 -0.015" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 -0.015"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+
+  <!-- Left Wrist Joint (Lower Arm to Hand) -->
+  <joint name="left_wrist_joint" type="revolute">
+    <parent link="left_lower_arm_link"/>
+    <child link="left_hand_link"/>
+    <origin xyz="0 0 -0.18" rpy="0 0 0"/> <!-- Connects at the end of the lower arm -->
+    <axis xyz="0 1 0"/> <!-- Pitch axis for wrist bend -->
+    <limit lower="-0.5" upper="0.5" effort="5.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Right Hip Link -->
+  <link name="right_hip_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.06"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.06"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.02" ixy="0.0" ixz="0.0" iyy="0.02" iyz="0.0" izz="0.02"/>
+    </inertial>
+  </link>
+
+  <!-- Right Hip Yaw Joint (Torso to Hip) -->
+  <joint name="right_hip_yaw_joint" type="revolute">
+    <parent link="torso_link"/>
+    <child link="right_hip_link"/>
+    <origin xyz="0 -0.08 -0.2" rpy="0 0 0"/> <!-- Right side, lower part of torso -->
+    <axis xyz="0 0 1"/> <!-- Yaw axis for hip rotation -->
+    <limit lower="-0.5" upper="0.5" effort="20.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Right Upper Leg Link -->
+  <link name="right_upper_leg_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.05" length="0.3"/>
+      </geometry>
+      <origin xyz="0 0 -0.15" rpy="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.05" length="0.3"/>
+      </geometry>
+      <origin xyz="0 0 -0.15" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="1.5"/>
+      <origin xyz="0 0 -0.15"/>
+      <inertia ixx="0.15" ixy="0.0" ixz="0.0" iyy="0.15" iyz="0.0" izz="0.15"/>
+    </inertial>
+  </link>
+
+  <!-- Right Hip Pitch Joint (Hip to Upper Leg) -->
+  <joint name="right_hip_pitch_joint" type="revolute">
+    <parent link="right_hip_link"/>
+    <child link="right_upper_leg_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/> <!-- Pitch axis for leg forward/backward -->
+    <limit lower="-1.57" upper="1.57" effort="20.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Right Lower Leg Link -->
+  <link name="right_lower_leg_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.04" length="0.25"/>
+      </geometry>
+      <origin xyz="0 0 -0.125" rpy="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.04" length="0.25"/>
+      </geometry>
+      <origin xyz="0 0 -0.125" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 -0.125"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+    </inertial>
+  </link>
+
+  <!-- Right Knee Joint (Upper Leg to Lower Leg) -->
+  <joint name="right_knee_joint" type="revolute">
+    <parent link="right_upper_leg_link"/>
+    <child link="right_lower_leg_link"/>
+    <origin xyz="0 0 -0.3" rpy="0 0 0"/> <!-- Connects at the end of the upper leg -->
+    <axis xyz="0 1 0"/> <!-- Pitch axis for knee bend -->
+    <limit lower="-2.0" upper="0.0" effort="20.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Right Foot Link -->
+  <link name="right_foot_link">
+    <visual>
+      <geometry>
+        <box size="0.15 0.08 0.03"/>
+      </geometry>
+      <origin xyz="0 0 -0.015" rpy="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.15 0.08 0.03"/>
+      </geometry>
+      <origin xyz="0 0 -0.015" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <origin xyz="0 0 -0.015"/>
+      <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
+    </inertial>
+  </link>
+
+  <!-- Right Ankle Joint (Lower Leg to Foot) -->
+  <joint name="right_ankle_joint" type="revolute">
+    <parent link="right_lower_leg_link"/>
+    <child link="right_foot_link"/>
+    <origin xyz="0 0 -0.25" rpy="0 0 0"/> <!-- Connects at the end of the lower leg -->
+    <axis xyz="0 1 0"/> <!-- Pitch axis for ankle bend -->
+    <limit lower="-0.5" upper="0.5" effort="10.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Left Hip Link -->
+  <link name="left_hip_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.06"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.06"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.02" ixy="0.0" ixz="0.0" iyy="0.02" izz="0.0" izz="0.02"/>
+    </inertial>
+  </link>
+
+  <!-- Left Hip Yaw Joint (Torso to Hip) -->
+  <joint name="left_hip_yaw_joint" type="revolute">
+    <parent link="torso_link"/>
+    <child link="left_hip_link"/>
+    <origin xyz="0 0.08 -0.2" rpy="0 0 0"/> <!-- Left side, lower part of torso -->
+    <axis xyz="0 0 1"/> <!-- Yaw axis for hip rotation -->
+    <limit lower="-0.5" upper="0.5" effort="20.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Left Upper Leg Link -->
+  <link name="left_upper_leg_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.05" length="0.3"/>
+      </geometry>
+      <origin xyz="0 0 -0.15" rpy="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.05" length="0.3"/>
+      </geometry>
+      <origin xyz="0 0 -0.15" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="1.5"/>
+      <origin xyz="0 0 -0.15"/>
+      <inertia ixx="0.15" ixy="0.0" ixz="0.0" iyy="0.15" iyz="0.0" izz="0.15"/>
+    </inertial>
+  </link>
+
+  <!-- Left Hip Pitch Joint (Hip to Upper Leg) -->
+  <joint name="left_hip_pitch_joint" type="revolute">
+    <parent link="left_hip_link"/>
+    <child link="left_upper_leg_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/> <!-- Pitch axis for leg forward/backward -->
+    <limit lower="-1.57" upper="1.57" effort="20.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Left Lower Leg Link -->
+  <link name="left_lower_leg_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.04" length="0.25"/>
+      </geometry>
+      <origin xyz="0 0 -0.125" rpy="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.04" length="0.25"/>
+      </geometry>
+      <origin xyz="0 0 -0.125" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 -0.125"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+    </inertial>
+  </link>
+
+  <!-- Left Knee Joint (Upper Leg to Lower Leg) -->
+  <joint name="left_knee_joint" type="revolute">
+    <parent link="left_upper_leg_link"/>
+    <child link="left_lower_leg_link"/>
+    <origin xyz="0 0 -0.3" rpy="0 0 0"/> <!-- Connects at the end of the upper leg -->
+    <axis xyz="0 1 0"/> <!-- Pitch axis for knee bend -->
+    <limit lower="-2.0" upper="0.0" effort="20.0" velocity="0.5"/>
+  </joint>
+
+  <!-- Left Foot Link -->
+  <link name="left_foot_link">
+    <visual>
+      <geometry>
+        <box size="0.15 0.08 0.03"/>
+      </geometry>
+      <origin xyz="0 0 -0.015" rpy="0 0 0"/>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.15 0.08 0.03"/>
+      </geometry>
+      <origin xyz="0 0 -0.015" rpy="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <origin xyz="0 0 -0.015"/>
+      <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
+    </inertial>
+  </link>
+
+  <!-- Left Ankle Joint (Lower Leg to Foot) -->
+  <joint name="left_ankle_joint" type="revolute">
+    <parent link="left_lower_leg_link"/>
+    <child link="left_foot_link"/>
+    <origin xyz="0 0 -0.25" rpy="0 0 0"/> <!-- Connects at the end of the lower leg -->
+    <axis xyz="0 1 0"/> <!-- Pitch axis for ankle bend -->
+    <limit lower="-0.5" upper="0.5" effort="10.0" velocity="0.5"/>
+  </joint>
+</robot>

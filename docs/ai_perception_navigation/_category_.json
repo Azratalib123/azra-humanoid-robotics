@@ -1,0 +1,8 @@
+{
+  "label": "AI Perception & Navigation",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "NVIDIA Isaac for advanced AI robotics"
+  }
+}

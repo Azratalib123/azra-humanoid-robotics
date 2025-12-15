@@ -1,0 +1,31 @@
+#usda 1.0
+
+def Xform "World"
+{
+    def "CollisionPlane"
+    {
+        assetPaths = ["omniverse://localhost/NVIDIA/Assets/Scenes/Templates/Basic/basic_scene.usd"]
+        kind = "subcomponent"
+        payload = ["@omniverse://localhost/NVIDIA/Assets/Scenes/Templates/Basic/basic_scene.usd@"]
+    }
+    def Xform "Obstacles"
+    {
+        def Cube "Cube1"
+        {
+            float3 xformOp:translate = (100, 0, 50)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+        def Cube "Cube2"
+        {
+            float3 xformOp:translate = (100, 100, 50)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+    def Xform "Humanoid"
+    {
+        # In a real scenario, this would reference an imported URDF or a more complex USD model
+        # For this placeholder, assume the humanoid is loaded here.
+        float3 xformOp:translate = (0, 0, 50)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+}
