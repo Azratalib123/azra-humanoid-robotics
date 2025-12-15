@@ -41,4 +41,3 @@ This book uses **Spec-Kit Plus** and **Claude Code** to define **learning object
 Students progress from **robotic nervous systems**, to **simulation in Gazebo and Unity**, to **AI-powered humanoids** capable of perception, planning, and manipulation. Each chapter builds practical skills to prepare students for a future where humans and intelligent robots work side by side.
 
 ➡️ **Next Chapter: Introduction to the Robotic Nervous System (ROS 2)**
-
