@@ -1,7 +1,7 @@
-
 ---
 sidebar_position: 1
 ---
+
 # Building Intelligent Humanoid Robotics
 
 ## Introduction to Physical AI & Embodied Intelligence
