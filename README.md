@@ -1,11 +1,11 @@
-# Physical AI & Humanoid Robotics 🦾🤖
+# Building Intelligent Humanoid Robotics 🦾🤖
 
-A **spec-driven, AI-authored technical book** focused on **Physical AI and Humanoid Robotics**, built using **Spec-Kit Plus**, **Claude Code**, and **Docusaurus**, and deployed via **vercel**.
+A **spec-driven, AI-authored technical book** focused on **Physical AI and Humanoid Robotics**, built using **Spec-Kit Plus**, **Claude Code**, and **Docusaurus**, and deployed via **Vercel**.
 
 This project explores how AI systems move beyond digital environments into the **physical world**, enabling humanoid robots to perceive, reason, and act using embodied intelligence.
 
 🌐 Live Book:  
-https://humanoid-robotics-book-kfn6dk8fn-ersa-ranis-projects.vercel.app/
+https://azra-humanoid-robotics.vercel.app/
 
 ---
 
@@ -71,7 +71,7 @@ Students and developers learn how to design, simulate, and deploy **autonomous h
 - **Robotics:** ROS 2, Gazebo, Unity
 - **AI & Simulation:** NVIDIA Isaac Sim, Isaac ROS
 - **Edge AI:** Jetson Orin Nano / NX
-- **Deployment:** GitHub Pages
+- **Deployment:** GitHub Pages / Vercel
 
 ---
 
@@ -92,40 +92,9 @@ This project follows a **Spec-Driven Development** process:
 ## 🚀 Getting Started (Local)
 
 ```bash
-git clone https://github.com/ersa-rani/humanoid-robotics-book.git
+git clone https://github.com/AzraTalib123/humanoid-robotics-book.git
 cd humanoid-robotics-book
 npm install
 npm run start
-Build for production:
-
-bash
-Copy code
+# Build for production:
 npm run build
-🎓 Target Audience
-AI & Robotics students
-
-Computer Science learners
-
-Hackathon participants
-
-Developers exploring humanoid robotics
-
-Anyone interested in Physical AI & embodied intelligence
-
-📜 License
-This project is released for educational and research purposes.
-
-
-🙌 Acknowledgements
-Spec-Kit Plus (Panaversity)
-
-gemini cli
-
-ROS 2 Community
-
-NVIDIA Isaac Platform
-
-OpenAI (Whisper & LLM concepts)
-
-✨ Author
-Ersa Rani
