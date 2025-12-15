@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .features {
   display: flex;
   align-items: center;
@@ -9,3 +10,16 @@
   height: 200px;
   width: 200px;
 }
+=======
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureSvg {
+  height: 200px;
+  width: 200px;
+}
+>>>>>>> 7e329f05dc838a13bb52fffdaed4957972c4fcd9

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "label": "AI Perception & Navigation",
   "position": 4,
@@ -5,4 +6,13 @@
     "type": "generated-index",
     "description": "NVIDIA Isaac for advanced AI robotics"
   }
+=======
+{
+  "label": "AI Perception & Navigation",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "NVIDIA Isaac for advanced AI robotics"
+  }
+>>>>>>> 7e329f05dc838a13bb52fffdaed4957972c4fcd9
 }

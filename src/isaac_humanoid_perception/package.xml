@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
@@ -25,4 +26,33 @@
   <export>
     <build_type>ament_python</build_type>
   </export>
+=======
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>isaac_humanoid_perception</name>
+  <version>0.0.0</version>
+  <description>ROS 2 package for Isaac ROS VSLAM pipeline for humanoid robot.</description>
+  <maintainer email="your_email@example.com">Your Name</maintainer>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <depend>rclpy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf2_ros</depend>
+  <!-- Potential Isaac ROS dependencies -->
+  <!-- <depend>isaac_ros_vslam</depend> -->
+  <!-- <depend>isaac_ros_image_proc</depend> -->
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+>>>>>>> 7e329f05dc838a13bb52fffdaed4957972c4fcd9
 </package>
