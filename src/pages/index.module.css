@@ -1,35 +1,28 @@
-
-/* *
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
-/* .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
- 
+/* ===============================
+   HERO WRAPPER
+================================ */
 .heroWrapper {
   padding: 6rem 0;
-  background: linear-gradient(135deg, #03002b, #01040f);
-  color: #ffffff;
 }
 
+/* LIGHT MODE → SOFT GRADIENT + WARM ACCENTS */
+html[data-theme='light'] .heroWrapper {
+  background: linear-gradient(
+    135deg,
+    #8f96a1 100%   /* cool light grey */
+  );
+  color: #1f2937; /* main text */
+}
 
+/* DARK MODE → ORIGINAL DARK */
+html[data-theme='dark'] .heroWrapper {
+  background: linear-gradient(135deg, #03002b, #01040f);
+  color: #b1a9a9;
+}
+
+/* ===============================
+   HERO GRID
+================================ */
 .heroGrid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -37,10 +30,14 @@
   gap: 4rem;
 }
 
+/* ===============================
+   HERO CONTENT
+================================ */
 .heroContent {
   max-width: 600px;
 }
 
+/* HERO TITLE */
 .heroTitle {
   font-size: 3.2rem;
   font-weight: 800;
@@ -48,28 +45,110 @@
   margin-bottom: 1rem;
 }
 
+/* Light mode heading color */
+html[data-theme='light'] .heroTitle {
+  color: #041d3f; /* change to any light mode color */
+}
+
+/* Dark mode heading color */
+html[data-theme='dark'] .heroTitle {
+  color: #facc15; /* change to any dark mode color */
+}
+
+/* HERO SUBTITLE */
 .heroSubtitle {
   font-size: 1.25rem;
-  opacity: 0.85;
   margin-bottom: 2rem;
 }
 
-/* Buttons */
-.heroActions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+/* Light mode subtitle color */
+html[data-theme='light'] .heroSubtitle {
+  color: #050505; /* soft dark grey */
 }
 
-/* Right Visual */
+/* Dark mode subtitle color */
+html[data-theme='dark'] .heroSubtitle {
+  color: #c9dfff; /* light grey */
+}
+
+/* HERO ACTION BUTTONS */
+.heroActions button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* LIGHT MODE BUTTONS */
+html[data-theme='light'] .heroActions .primaryBtn {
+  background: linear-gradient(90deg, #facc15, #f59e0b);
+  color: #1f2937;
+}
+
+html[data-theme='light'] .heroActions .primaryBtn:hover {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+html[data-theme='light'] .heroActions .secondaryBtn {
+  background: #e0e7ff;
+  color: #1e3a8a;
+}
+
+html[data-theme='light'] .heroActions .secondaryBtn:hover {
+  background: #c7d2fe;
+}
+
+/* DARK MODE BUTTONS */
+html[data-theme='dark'] .heroActions .primaryBtn {
+  background: linear-gradient(90deg, #7c3aed, #9333ea);
+  color: #f3f4f6;
+}
+
+html[data-theme='dark'] .heroActions .primaryBtn:hover {
+  background: linear-gradient(90deg, #9333ea, #a855f7);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+html[data-theme='dark'] .heroActions .secondaryBtn {
+  background: #374151;
+  color: #e5e7eb;
+}
+
+html[data-theme='dark'] .heroActions .secondaryBtn:hover {
+  background: #4b5563;
+}
+
+/* ===============================
+   RIGHT VISUAL
+================================ */
 .heroVisual {
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
-.visualCard {
+/* LIGHT MODE CARD → SOFT COLOR & SHADOW */
+html[data-theme='light'] .visualCard {
+  background: linear-gradient(145deg,  #0e1c3b);
+  border: 1px solid #d1d7e0;
+  color: #111827;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+
+/* DARK MODE CARD → GLASS EFFECT */
+html[data-theme='dark'] .visualCard {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e5e7eb;
+}
+
+/* CARD COMMON */
+.visualCard {
   border-radius: 16px;
   padding: 2.5rem;
   text-align: center;
@@ -80,11 +159,12 @@
 
 .visualCard:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
 .visualCard span {
   font-size: 3rem;
+  color: #f59e0b; /* golden accent */
 }
 
 .visualCard h3 {
@@ -92,17 +172,36 @@
   font-size: 1.4rem;
 }
 
-.visualCard p {
-  font-size: 0.95rem;
-  opacity: 0.85;
+html[data-theme='light'] .visualCard h3 {
+  color: #b7bcc4;
 }
 
-/* Main Content */
+html[data-theme='dark'] .visualCard h3 {
+  color: #ffffff;
+}
+
+.visualCard p {
+  font-size: 0.95rem;
+}
+
+html[data-theme='light'] .visualCard p {
+  color: #6b7280;
+}
+
+html[data-theme='dark'] .visualCard p {
+  color: #d1d5db;
+}
+
+/* ===============================
+   MAIN CONTENT
+================================ */
 .mainContent {
   padding: 4rem 0;
 }
 
-/* Responsive */
+/* ===============================
+   RESPONSIVE
+================================ */
 @media screen and (max-width: 996px) {
   .heroGrid {
     grid-template-columns: 1fr;

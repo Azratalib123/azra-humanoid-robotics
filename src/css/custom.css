@@ -1,195 +1,160 @@
-
-/**
- * Any CSS you add here will be applied to all pages of Docusaurus.
- * Custom colors are defined here to achieve the modern AI/Robotics look.
+/* *
+ * CLEAN + ACADEMIC THEME
+ * Minimal changes, maximum readability
  */
 
-/* Sets up custom properties for color scheme */
+/* ===============================
+   BASE FONT
+================================ */
 :root {
-  /* Dark Blue Primary for Dark Mode Backgrounds/Surfaces */
-  --hr-dark-primary: #0a192f;
-  /* Cyan Accent for Highlights, Links, and Buttons (AI/Tech Feel) */
-  --hr-cyan-accent: #00bcd4;
-
-  /* Standard Docusaurus Color Overrides for Dark Mode */
-  --ifm-color-primary: var(--hr-cyan-accent); /* Links, Buttons, Highlights */
-  --ifm-color-primary-dark: #00a0b2;
-  --ifm-color-primary-darker: #008f9e;
-  --ifm-color-primary-darkest: #007380;
-  --ifm-color-primary-light: #16c6da;
-  --ifm-color-primary-lighter: #2fd9eb;
-  --ifm-color-primary-lightest: #66e7f5;
-
-  /* Docusaurus Standard Dark Theme Background Overrides */
-  /* Main document background */
-  --ifm-background-color: var(--hr-dark-primary);
-  /* Sidebar, Navbar, and Footer surface color */
-  --ifm-background-surface-color: var(--hr-dark-primary);
-
-  /* REQUIRED: Set primary text color for DARK MODE (White/Light Shade) */
-  --ifm-font-color-base: #e6f1ff;
-  /* Sidebar links/secondary text */
-  --ifm-font-color-secondary: #707991;
-
-  /* Use a lighter shade of the accent for code block backgrounds */
-  --ifm-code-background: #112240;
+  --ifm-font-family-base: 'Poppins', system-ui, -apple-system;
 }
 
-/* REQUIRED: Change Global Font Style */
-:root {
-  --ifm-font-family-base: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+/* ===============================
+   DARK MODE (SOFT & SAFE)
+================================ */
+html[data-theme='dark'] {
+  --ifm-background-color: #0f172a;            /* dark slate */
+  --ifm-background-surface-color: #111827;    /* slightly lighter */
+
+  --ifm-font-color-base: #e5e7eb;              /* soft white */
+  --ifm-font-color-secondary: #9ca3af;
+
+  --ifm-heading-color: #f9fafb;
+
+  --ifm-color-primary: #38bdf8;                /* calm blue */
+  --ifm-link-color: #38bdf8;
+  --ifm-link-hover-color: #7dd3fc;
 }
 
-/* Specific component tweaks for the aesthetic */
+/* ===============================
+   LIGHT MODE (NOT PURE WHITE)
+================================ */
+html[data-theme='light'] {
+  --ifm-background-color: #fdfdff;            /* very light grey */
+  --ifm-background-surface-color: #ffffff;
 
-/* Navbar, Footer, and Sidebar background */
-.navbar, .footer, .menu {
-  background-color: var(--hr-dark-primary);
-  border-bottom: 1px solid #1c3559; /* Subtle border for separation */
+  --ifm-font-color-base: #696a6b;              /* dark readable */
+  --ifm-font-color-secondary: #3c3c3d;
+
+  --ifm-heading-color: #111827;
+
+  --ifm-color-primary: #2563eb;                /* academic blue */
+  --ifm-link-color: #2563eb;
+  --ifm-link-hover-color: #1d4ed8;
 }
 
-/* ⚠️ FINAL STRUCTURAL TWEAK: Force Main Wrapper visibility and color in Dark Mode */
-/* This targets the main content area in Docusaurus pages */
-html[data-theme='dark'] .main-wrapper, 
-html[data-theme='dark'] .docPage,
-html[data-theme='dark'] .container {
-    background-color: var(--hr-dark-primary);
-    color: var(--ifm-font-color-base); /* Ensure text color is applied */
+/* ===============================
+   GLOBAL TEXT (NO FORCE)
+================================ */
+body {
+  color: var(--ifm-font-color-base);
 }
 
+/* ===============================
+   HEADINGS
+================================ */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ifm-heading-color);
+}
 
-/* REQUIRED: Set Navbar text to White */
-.navbar__title, 
-.navbar__item, 
+/* ===============================
+   LINKS
+================================ */
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===============================
+   NAVBAR (CLEAN)
+================================ */
+.navbar {
+  height: 68px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+html[data-theme='dark'] .navbar {
+  background-color: #0f172a;
+}
+
+html[data-theme='light'] .navbar {
+  background-color: #f1f1f1;
+}
+
+.navbar__title {
+  font-weight: 600;
+}
+
 .navbar__link {
-  color: #ffffff !important; 
+  font-size: 0.95rem;
 }
 
-/* Sidebar links hover/active color */
-.menu__link--active, .menu__link:hover {
-  background-color: #112240; /* Slightly lighter shade on hover */
-  color: var(--hr-cyan-accent);
+/* ===============================
+   SIDEBAR
+================================ */
+.menu {
+  background-color: var(--ifm-background-surface-color);
 }
 
-/* REQUIRED: Homepage Interface (Hero Banner) Styling */
-.hero__title {
-  font-size: 3.5rem; 
-  font-weight: 700;
+.menu__link--active {
+  font-weight: 600;
+}
+
+/* ===============================
+   TOC
+================================ */
+.table-of-contents__link {
+  color: var(--ifm-font-color-secondary);
+}
+
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+}
+
+/* ===============================
+   FOOTER
+================================ */
+/* ===============================
+   FOOTER TEXT FIX (LIGHT + DARK)
+================================ */
+
+/* LIGHT MODE FOOTER */
+html[data-theme='light'] .footer {
+  background-color: #070707;
+}
+
+html[data-theme='light'] .footer__title {
+  color: #f8efef;          /* dark heading */
+}
+
+html[data-theme='light'] .footer__link-item,
+html[data-theme='light'] .footer__copyright {
+  color: #edeef1;          /* readable grey */
+}
+
+html[data-theme='light'] .footer__link-item:hover {
+  color: #2563eb;
+}
+
+/* DARK MODE FOOTER */
+html[data-theme='dark'] .footer {
+  background-color: #0e1c3b;
+}
+
+html[data-theme='dark'] .footer__title {
+  color: #f5f5f5;
+}
+
+html[data-theme='dark'] .footer__link-item,
+html[data-theme='dark'] .footer__copyright {
   color: #ffffff;
 }
 
-.hero__subtitle {
-  font-size: 1.5rem;
-  margin-top: 10px;
-  color: var(--hr-cyan-accent); 
+html[data-theme='dark'] .footer__link-item:hover {
+  color: #38bdf8;
 }
 
-/* General Typography Enhancements */
-:root {
-  --ifm-h1-font-size: 3.8rem;
-  --ifm-h2-font-size: 2.8rem;
-  --ifm-h3-font-size: 2.2rem;
-  --ifm-h4-font-size: 1.8rem;
-  --ifm-h5-font-size: 1.4rem;
-  --ifm-h6-font-size: 1.1rem;
-  --ifm-font-size-base: 1.1rem; /* Slightly larger base font for readability */
-  --ifm-line-height-base: 1.6; /* Improved line height */
-}
-
-/* Redefine button styles for a more modern look */
-.button {
-  border-radius: 8px; /* Slightly more rounded corners */
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-}
-
-.button--primary { /* A new, filled primary button */
-  background-color: var(--hr-cyan-accent);
-  color: var(--hr-dark-primary);
-  border: 2px solid var(--hr-cyan-accent);
-}
-
-.button--primary:hover {
-  background-color: #00e5ff; /* Lighter cyan on hover */
-  border-color: #00e5ff;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-.button--secondary { /* The old primary button becomes secondary (outlined) */
-  border: 2px solid var(--hr-cyan-accent);
-  background-color: transparent;
-  color: var(--hr-cyan-accent);
-}
-
-.button--secondary:hover {
-  background-color: var(--hr-cyan-accent);
-  color: var(--hr-dark-primary);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Adjust hero button size and margin */
-.hero__subtitle + div .button { /* Target button directly after subtitle div */
-  margin-top: 2rem;
-  font-size: 1.2rem;
-  padding: 0.9rem 1.8rem;
-}
-
-/* Ensure consistent navbar item padding and font size */
-.navbar__item .navbar__link {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-}
-
-/* Footer link adjustments for better spacing */
-.footer__link-item {
-  margin-bottom: 0.5rem;
-}
-
-.footer__title {
-  margin-bottom: 1rem;
-}
-
-/* Card styling (for HomepageFeatures and similar components) */
-.card {
-  background-color: #112240; /* Darker background for cards */
-  border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  transition: transform 0.2s ease-in-out;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-}
-
-.card__header h3 {
-  color: var(--hr-cyan-accent);
-}
-
-/* Additional spacing for main content areas */
-.main-wrapper, .docPage, .container {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-/* Adjust the hero banner padding */
-.heroBanner {
-  padding: 6rem 0; /* Increase vertical padding */
-}
-
-
-/* Code blocks in light mode (if a user manually switches) - set a neutral color */
-html[data-theme='light'] {
-  --ifm-code-background: #f7f7f7;
-  --ifm-color-primary: #1e3a8a; /* Darker blue primary for links in light mode */
-}
-
-/* Global focus state for accessibility, using the accent color */
-:focus {
-  outline: 2px solid var(--hr-cyan-accent);
-  outline-offset: 2px;
-}

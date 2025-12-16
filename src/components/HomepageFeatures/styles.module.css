@@ -1,12 +1,61 @@
-
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  justify-content: center;
+  padding: 4rem 0;
   width: 100%;
+  background-color: var(--ifm-background-color);
 }
 
+/* SVG Image Styling */
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 220px;
+  width: 220px;
+  margin-bottom: 1.2rem;
+
+  /* 🔹 SMOOTH BOOK-STYLE TRANSITION */
+  transition: 
+    transform 0.45s ease-in-out,
+    filter 0.45s ease-in-out;
+}
+
+/* Subtle hover – academic feel */
+.featureSvg:hover {
+  transform: translateY(-6px) scale(1.03);
+  filter: brightness(1.06) contrast(1.04);
+}
+
+/* Headings */
+:global(.col h3) {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Description text */
+:global(.col p) {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ifm-font-color-base);
+}
+
+/* Tablet */
+@media (max-width: 996px) {
+  .featureSvg {
+    height: 200px;
+    width: 200px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .featureSvg {
+    height: 180px;
+    width: 180px;
+  }
+
+  .features {
+    padding: 3rem 0;
+  }
 }
