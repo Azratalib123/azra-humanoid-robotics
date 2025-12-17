@@ -78,7 +78,7 @@ You **MUST** consider the user input before proceeding (if not empty).
    - Suggested MVP scope (typically just User Story 1)
    - Format validation: Confirm ALL tasks follow the checklist format (checkbox, ID, labels, file paths)
 
-Context for task generation: Add my GitHub profile link (https://github.com/ersa-rani) anywhere in the project where the GitHub icon or GitHub reference is used. This includes the navbar, footer, and any author or project metadata.
+Context for task generation: Add my GitHub profile link (https://github.com/Azratalib123) anywhere in the project where the GitHub icon or GitHub reference is used. This includes the navbar, footer, and any author or project metadata.
 
 The tasks.md should be immediately executable - each task must be specific enough that an LLM can complete it without additional context.
 
