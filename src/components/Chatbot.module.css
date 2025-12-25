@@ -2,102 +2,105 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 350px;
-  height: 500px;
-  background: white;
-  border-radius: 12px;
+  width: 370px;
+  height: 540px;
+  background: #ffffff;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+  font-family: 'Inter', 'Comic Sans MS', cursive, sans-serif;
   z-index: 10000;
   overflow: hidden;
-  font-family: 'Comic Sans MS', cursive, sans-serif; /* Friendly font like image */
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .header {
-  background: #0b1836;
+  background: linear-gradient(135deg,#0b1836,#1e3a8a);
   color: white;
-  padding: 15px;
+  padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.headerTitle {
-  font-size: 22px;
-  font-weight: bold;
-}
+.headerTitle { font-size: 18px; font-weight: 600; }
 
 .closeBtn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
+  background: rgba(255,255,255,0.2); border:none; width:30px; height:30px;
+  border-radius:50%; color:white; cursor:pointer; transition:0.2s;
 }
+.closeBtn:hover { background: rgba(255,255,255,0.35); transform: rotate(90deg); }
 
 .chatBody {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  flex:1;
+  padding:16px;
+  overflow-y:auto;
+  display:flex; flex-direction:column; gap:12px;
+  background: #f8fafc;
 }
 
-/* Assistant Bubble: White background with thin border */
-.botRow .bubble {
-  background: white;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 18px;
-  padding: 10px 18px;
-  max-width: 85%;
-  align-self: flex-start;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+.userRow { display:flex; justify-content:flex-end; }
+.botRow { display:flex; justify-content:flex-start; }
+
+.bubble {
+  position: relative;
+  max-width: 78%;
+  padding: 12px 16px;
+  font-size:14px;
+  border-radius:18px;
+  line-height:1.5;
+  animation: fadeIn 0.2s ease-in;
 }
 
-/* User Bubble: Black background with white text */
-.userRow {
-  display: flex;
-  justify-content: flex-end;
+@keyframes fadeIn {
+  from { opacity:0; transform:scale(0.96); } to { opacity:1; transform:scale(1); }
 }
 
-.userRow .bubble {
-  background:#0b1836;
-  color: white;
-  border-radius: 18px;
-  padding: 10px 18px;
-  max-width: 85%;
+.botRow .bubble { background:#ffffff; color:#1f2937; border:1px solid #e5e7eb; border-bottom-left-radius:6px; }
+.userRow .bubble { background:#0b1836; color:white; border-bottom-right-radius:6px; }
+
+.copyBtn {
+  position: absolute;
+  top:4px; right:4px;
+  background:none; border:none; cursor:pointer; font-size:14px;
 }
 
 .footer {
-  padding: 15px;
-  border-top: 1px solid #eee;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  padding:12px; border-top:1px solid #e5e7eb; display:flex; align-items:center; gap:8px; background:#ffffff;
 }
 
 .footer input {
-  flex: 1;
-  border: none;
-  border-bottom: 2px solid #eee;
-  padding: 8px;
-  outline: none;
-  font-size: 16px;
+  flex:1; border:1px solid #d1d5db; border-radius:12px; padding:8px 12px;
+  font-size:14px; outline:none; transition:border 0.2s;
 }
+.footer input:focus { border-color:#1e3a8a; }
 
-.sendBtn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: black;
-  transition: transform 0.2s;
+.sendBtn, .voiceBtn {
+  width:40px; height:40px; border-radius:12px; border:none;
+  background:#0b1836; color:white; font-size:18px; cursor:pointer; transition:0.2s;
 }
+.sendBtn:hover, .voiceBtn:hover { transform:scale(1.1); background:#1e3a8a; }
 
-.sendBtn:hover {
-  transform: scale(1.1);
+.voiceBtn { background:#1e3a8a; }
+.chatBody::-webkit-scrollbar { width:6px; }
+.chatBody::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:10px; }
+
+/* ================= Dark Mode ================= */
+.dark {
+  background:#1e1e2f;
 }
+.dark .header { background:#0b1836; }
+.dark .chatBody { background:#2c2c3c; }
+.dark .botRow .bubble { background:#3b3b50; color:#f1f1f1; border:1px solid #555; }
+.dark .userRow .bubble { background:#4b4b6b; color:#f1f1f1; }
+.dark .footer { background:#1e1e2f; border-top:1px solid #444; }
+.dark .footer input { background:#2c2c3c; color:#f1f1f1; border:1px solid #555; }
+.dark .sendBtn, .dark .voiceBtn { background:#4b4b6b; color:#f1f1f1; }
+.dark .sendBtn:hover, .dark .voiceBtn:hover { background:#6c6c8c; }
+.dark .closeBtn { background: rgba(255,255,255,0.1); }

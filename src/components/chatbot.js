@@ -1,42 +1,99 @@
-import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useImperativeHandle,
+  forwardRef
+} from 'react';
 import styles from './Chatbot.module.css';
+
+/* =========================
+   FRIENDLY + CONCISE SYSTEM
+========================= */
+const SYSTEM_INSTRUCTION = `
+You are a friendly, polite, and concise AI assistant.
+
+Tone:
+- Sound natural and human-like.
+- Be short but warm.
+- Do NOT be robotic.
+- Avoid long explanations unless the user asks.
+
+Greetings:
+- If the user says "hello", "hi", or similar:
+  Respond warmly, for example:
+  "Hello! 😊 How are you? How can I help you today?"
+
+Book Rules:
+- You are the official assistant for the book "Physical AI & Humanoid Robotics".
+- When asked about the book, answer briefly and clearly.
+- Do NOT over-explain.
+- If a topic is not part of the book, reply exactly:
+  "This topic is not covered in the current version of the book."
+
+Book Chapters:
+1. Introduction to Physical AI & Embodied Intelligence
+2. Systems
+3. Tutorial - Basics
+4. Simulation
+5. Tutorial - Extras
+6. AI Perception & Navigation
+7. Vision-Language-Action
+8. Capstone
+
+General Questions:
+- Answer simply and politely.
+`;
 
 const Chatbot = forwardRef((props, ref) => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: "Hello.. I'm listening! Go on.." }
+    {
+      role: 'assistant',
+      content:
+        "Hello! 😊 How can I help you today?"
+    }
   ]);
+
   const messagesEndRef = useRef(null);
 
   useImperativeHandle(ref, () => ({
-    toggleChat: () => setIsOpen(true)
+    toggleChat: () => setIsOpen(true),
   }));
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    const userMsg = { role: 'user', content: input };
-    setMessages(prev => [...prev, userMsg]);
+    const userText = input;
+    const userMessage = { role: 'user', content: userText };
+    setMessages(prev => [...prev, userMessage]);
     setInput('');
 
     try {
-      
-      const MY_KEY = "AIzaSyDSE5qVk9uSSF76kEdDnF7fi7Wn6gbk8_g"; 
-      
-     
-      const api_url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${MY_KEY}`;
+      const API_KEY = "AIzaSyCCIWdmzu5OcCmAZ7j1aGtusepVSBd28xc";
 
-      const response = await fetch(api_url, {
+      const apiUrl =
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: input }] }]
-        }),
+          systemInstruction: {
+            parts: [{ text: SYSTEM_INSTRUCTION }]
+          },
+          contents: [
+            {
+              role: 'user',
+              parts: [{ text: userText }]
+            }
+          ]
+        })
       });
 
       const data = await response.json();
@@ -45,14 +102,23 @@ const Chatbot = forwardRef((props, ref) => {
         throw new Error(data.error.message);
       }
 
-      if (data.candidates && data.candidates[0].content) {
-        const botReply = data.candidates[0].content.parts[0].text;
-        setMessages(prev => [...prev, { role: 'assistant', content: botReply }]);
-      }
+      const botReply =
+        data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+        "Sorry 😊 I couldn’t understand that.";
 
-    } catch (err) {
-      console.error("Chat Error:", err);
-      setMessages(prev => [...prev, { role: 'assistant', content: "System: " + err.message }]);
+      setMessages(prev => [
+        ...prev,
+        { role: 'assistant', content: botReply }
+      ]);
+
+    } catch (error) {
+      setMessages(prev => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: "⚠️ Sorry, something went wrong. Please try again."
+        }
+      ]);
     }
   };
 
@@ -60,31 +126,132 @@ const Chatbot = forwardRef((props, ref) => {
 
   return (
     <div className={styles.chatWindow}>
+      {/* Header */}
       <div className={styles.header}>
-        <span className={styles.headerTitle}>Chatbot!</span>
-        <button onClick={() => setIsOpen(false)} className={styles.closeBtn}>✕</button>
+        <span className={styles.headerTitle}>Chat Assistant</span>
+        <button
+          className={styles.closeBtn}
+          onClick={() => setIsOpen(false)}
+        >
+          ✕
+        </button>
       </div>
-      
+
+      {/* Chat Body */}
       <div className={styles.chatBody}>
-        {messages.map((msg, i) => (
-          <div key={i} className={msg.role === 'user' ? styles.userRow : styles.botRow}>
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            className={msg.role === 'user' ? styles.userRow : styles.botRow}
+          >
             <div className={styles.bubble}>{msg.content}</div>
           </div>
         ))}
         <div ref={messagesEndRef} />
       </div>
 
+      {/* Footer */}
       <div className={styles.footer}>
-        <input 
-          value={input} 
-          onChange={(e) => setInput(e.target.value)} 
-          onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-          placeholder="Type a message" 
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+          placeholder="Type your message..."
         />
-        <button onClick={sendMessage} className={styles.sendBtn}>➤</button>
+        <button className={styles.sendBtn} onClick={sendMessage}>
+          ➤
+        </button>
       </div>
     </div>
   );
 });
 
 export default Chatbot;
+
+// import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
+// import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+// import { GoogleGenerativeAI } from "@google/generative-ai";
+// import styles from './Chatbot.module.css';
+
+// const SYSTEM_INSTRUCTION = "You are a friendly, concise AI assistant for the book 'Physical AI & Humanoid Robotics'. Give short, warm responses.";
+
+// const Chatbot = forwardRef((props, ref) => {
+//   const { siteConfig } = useDocusaurusContext();
+//   const [isOpen, setIsOpen] = useState(false);
+//   const [input, setInput] = useState('');
+//   const [messages, setMessages] = useState([
+//     { role: 'assistant', content: "Hello! 😊 How can I help you today?" }
+//   ]);
+
+//   const messagesEndRef = useRef(null);
+//   useImperativeHandle(ref, () => ({ toggleChat: () => setIsOpen(true) }));
+
+//   useEffect(() => {
+//     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+//   }, [messages]);
+
+//   const sendMessage = async () => {
+//     if (!input.trim()) return;
+
+//     const userText = input;
+//     setMessages(prev => [...prev, { role: 'user', content: userText }]);
+//     setInput('');
+
+//     try {
+//       const API_KEY = siteConfig.customFields.geminiApiKey;
+//       if (!API_KEY) throw new Error("API Key Missing. Check your .env file.");
+
+//       const genAI = new GoogleGenerativeAI(API_KEY);
+
+//       // Fixed Model Name: 'gemini-1.5-flash-latest' sabse stable hai
+//       const model = genAI.getGenerativeModel({
+//         model: "gemini-1.5-flash-latest",
+//       });
+
+//       // System instruction ko prompt ke sath merge kar rahe hain for better compatibility
+//       const prompt = `${SYSTEM_INSTRUCTION}\n\nUser: ${userText}`;
+
+//       const result = await model.generateContent(prompt);
+//       const response = await result.response;
+//       const botReply = response.text();
+
+//       setMessages(prev => [...prev, { role: 'assistant', content: botReply }]);
+
+//     } catch (error) {
+//       console.error("Chat Error:", error);
+//       setMessages(prev => [...prev, { role: 'assistant', content: "⚠️ Error: " + error.message }]);
+//     }
+//   };
+
+//   if (!isOpen) return null;
+
+//   return (
+//     <div className={styles.chatWindow}>
+//       <div className={styles.header}>
+//         <span className={styles.headerTitle}>Chat Assistant</span>
+//         <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>✕</button>
+//       </div>
+//       <div className={styles.chatBody}>
+//         {messages.map((msg, index) => (
+//           <div key={index} className={msg.role === 'user' ? styles.userRow : styles.botRow}>
+//             <div className={styles.bubble}>{msg.content}</div>
+//           </div>
+//         ))}
+//         <div ref={messagesEndRef} />
+//       </div>
+//       <div className={styles.footer}>
+//         <input
+//           value={input}
+//           onChange={(e) => setInput(e.target.value)}
+//           onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+//           placeholder="Type your message..."
+//         />
+//         <button className={styles.sendBtn} onClick={sendMessage}>➤</button>
+//       </div>
+//     </div>
+//   );
+// });
+
+// export default Chatbot;
+
+

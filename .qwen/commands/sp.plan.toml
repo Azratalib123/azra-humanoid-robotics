@@ -3,6 +3,14 @@ description = "Execute the implementation planning workflow using the plan templ
 prompt = """
 ---
 description: Execute the implementation planning workflow using the plan template to generate design artifacts.
+handoffs: 
+  - label: Create Tasks
+    agent: sp.tasks
+    prompt: Break the plan into tasks
+    send: true
+  - label: Create Checklist
+    agent: sp.checklist
+    prompt: Create a checklist for the following domain...
 ---
 
 ## User Input
@@ -70,7 +78,7 @@ You **MUST** consider the user input before proceeding (if not empty).
    - Output OpenAPI/GraphQL schema to `/contracts/`
 
 3. **Agent context update**:
-   - Run `.specify/scripts/powershell/update-agent-context.ps1 -AgentType gemini`
+   - Run `.specify/scripts/powershell/update-agent-context.ps1 -AgentType qwen`
    - These scripts detect which AI agent is in use
    - Update the appropriate agent-specific context file
    - Add only new technology from current plan
