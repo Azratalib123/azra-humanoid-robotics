@@ -1,36 +1,32 @@
-
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
+    title: 'User Friendly Interface',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Our platform is designed to be intuitive and simple, so you can get started without any hassle.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Focus on Your Content',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Spend more time creating meaningful content while our tools handle the setup and structure for you.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Built with React',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Leverage the power of React to customize and extend your website with reusable components and layouts.
       </>
     ),
   },
