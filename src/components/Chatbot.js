@@ -75,7 +75,7 @@ const Chatbot = forwardRef((props, ref) => {
     setInput('');
 
     try {
-      const API_KEY = "AIzaSyCCIWdmzu5OcCmAZ7j1aGtusepVSBd28xc";
+      const API_KEY = "AIzaSy...............................";
 
       const apiUrl =
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
